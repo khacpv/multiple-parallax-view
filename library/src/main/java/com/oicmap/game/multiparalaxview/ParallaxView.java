@@ -31,6 +31,11 @@ public class ParallaxView extends FrameLayout implements SensorEventListener {
 
     Handler mHandler = new Handler();
 
+    float gyroX = 0;
+
+    float gyroY = 0;
+    float gyroZ = 0;
+
     boolean debug = true;
 
     Runnable update = new Runnable() {
@@ -78,9 +83,9 @@ public class ParallaxView extends FrameLayout implements SensorEventListener {
         debug = BuildConfig.DEBUG;
 
         sensorMng = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
-        if(sensorMng.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null){
+        if (sensorMng.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null) {
             gyroscope = sensorMng.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-            sensorMng.registerListener(this,gyroscope,SensorManager.SENSOR_DELAY_NORMAL);
+            sensorMng.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 
@@ -113,8 +118,8 @@ public class ParallaxView extends FrameLayout implements SensorEventListener {
             }
             paintText.setAlpha((int) (alpha * 255 * item.alpha));
             canvas.drawText(item.text, //
-                    item.xPercent * getWidth() / 100, //
-                    item.yPercent * getHeight() / 100 + bound.height(), //
+                    (item.xPercent+gyroX) * getWidth() / 100, //
+                    (item.yPercent+gyroZ) * getHeight() / 100 + bound.height(), //
                     paintText);
         }
     }
@@ -135,7 +140,10 @@ public class ParallaxView extends FrameLayout implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Log.e("TAG",event.values[0]+"-"+event.values[1]+event.values[2]);
+        Log.e("TAG", event.values[0] + "-" + event.values[1] + event.values[2]);
+        gyroX = event.values[0];
+        gyroY = event.values[1];
+        gyroZ = event.values[2];
     }
 
     @Override
