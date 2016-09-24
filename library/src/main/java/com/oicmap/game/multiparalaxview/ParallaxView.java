@@ -27,6 +27,8 @@ public class ParallaxView extends FrameLayout {
 
     Handler mHandler = new Handler();
 
+    boolean debug = true;
+
     Runnable update = new Runnable() {
         @Override
         public void run() {
@@ -64,6 +66,8 @@ public class ParallaxView extends FrameLayout {
         paintText.setTextAlign(Paint.Align.LEFT);
 
         setWillNotDraw(false);
+
+        debug = BuildConfig.DEBUG;
     }
 
     public void setData(List<DataItem> data) {
@@ -76,11 +80,10 @@ public class ParallaxView extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        log = getWidth() + "-" + getHeight();
-        Log.e("TAG", "log:" + log);
 
-        paintText.getTextBounds(log, 0, log.length(), bound);
-        canvas.drawText(log, 0, bound.height(), paintText);
+        if (debug) {
+            drawDebug(canvas);
+        }
 
         for (DataItem item : mStringList) {
             paintText.setTextSize(item.size);
@@ -94,7 +97,7 @@ public class ParallaxView extends FrameLayout {
             } else {
                 alpha = 1;
             }
-            paintText.setAlpha((int) (alpha * 255));
+            paintText.setAlpha((int) (alpha * 255 * item.alpha));
             canvas.drawText(item.text, //
                     item.xPercent * getWidth() / 100, //
                     item.yPercent * getHeight() / 100 + bound.height(), //
@@ -106,6 +109,13 @@ public class ParallaxView extends FrameLayout {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         mHandler.removeCallbacks(update);
+    }
+
+    private void drawDebug(Canvas canvas) {
+        log = getWidth() + "-" + getHeight();
+        Log.e("TAG", "log:" + log);
+        paintText.getTextBounds(log, 0, log.length(), bound);
+        canvas.drawText(log, 0, bound.height(), paintText);
     }
 }
 

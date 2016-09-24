@@ -9,28 +9,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    int sizeLarge = 70;
-
-    int sizeDefault = 50;
-
-    int sizeSmall = 40;
-
-    int alpha1 = 255;
-
-    int alpha2 = 200;
-
-    int alpha3 = 150;
-
-    int color1 = Color.BLACK;
-
-    int color2 = Color.GRAY;
-
-    float vFast = 0.15f;
-
-    float vMedium = 0.1f;
-
-    float vSlow = 0.05f;
-
     ParallaxView mParallaxView;
 
     ArrayList<DataItem> data = new ArrayList<>();
@@ -43,31 +21,47 @@ public class MainActivity extends AppCompatActivity {
         mParallaxView = (ParallaxView) findViewById(R.id.parallax);
 
         {
-            DataItem item = DataItem.Builder.make("Samsung", DataItem.Builder.MODE_DEFAULT)
-                    .setXPercent(30)
+            DataItem item = DataItem.Builder.make("Nhất cử lưỡng tiện", DataItem.Builder.MODE_DEFAULT)
+                    .setXPercent(0)
+                    .setYPercent(0)
+                    .build();
+            data.add(item);
+        }
+
+        {
+            DataItem item = DataItem.Builder.make("Xôi hỏng bỏng không", DataItem.Builder.MODE_HIGH)
+                    .setXPercent(10)
+                    .setYPercent(10)
+                    .build();
+            data.add(item);
+        }
+
+        {
+            DataItem item = DataItem.Builder.make("\"Đói cho sạch, rách cho ...\"", DataItem.Builder.MODE_LOW)
+                    .setXPercent(20)
                     .setYPercent(30)
                     .build();
             data.add(item);
         }
 
         {
-            DataItem item = DataItem.Builder.make("Google", DataItem.Builder.MODE_HIGH)
-                    .setXPercent(15)
+            DataItem item = DataItem.Builder.make("\"Mật ngọt chết ...\"?", DataItem.Builder.MODE_DEFAULT)
+                    .setXPercent(30)
                     .setYPercent(50)
                     .build();
             data.add(item);
         }
 
         {
-            DataItem item = DataItem.Builder.make("Microsoft", DataItem.Builder.MODE_LOW)
-                    .setXPercent(5)
-                    .setYPercent(60)
+            DataItem item = DataItem.Builder.make("\"Phép ... thua lệ làng\"?", DataItem.Builder.MODE_HIGH)
+                    .setXPercent(40)
+                    .setYPercent(65)
                     .build();
             data.add(item);
         }
 
         {
-            DataItem item = DataItem.Builder.make("IBM Software company", DataItem.Builder.MODE_LOW)
+            DataItem item = DataItem.Builder.make("\"Chim sa ... lặn\"?", DataItem.Builder.MODE_LOW)
                     .setXPercent(50)
                     .setYPercent(75)
                     .build();
@@ -75,32 +69,48 @@ public class MainActivity extends AppCompatActivity {
         }
 
         {
-            DataItem item = DataItem.Builder.make("FPT coporation", DataItem.Builder.MODE_DEFAULT)
-                    .setXPercent(25)
+            DataItem item = DataItem.Builder.make("Nước uống nhớ nguồn", DataItem.Builder.MODE_DEFAULT)
+                    .setXPercent(60)
+                    .setYPercent(20)
+                    .build();
+            data.add(item);
+        }
+
+        {
+            DataItem item = DataItem.Builder.make("\"Ăn bờ ở ...\"?", DataItem.Builder.MODE_DEFAULT)
+                    .setXPercent(70)
                     .setYPercent(35)
                     .build();
             data.add(item);
         }
 
         {
-            DataItem item = DataItem.Builder.make("Inteligent company", DataItem.Builder.MODE_HIGH)
-                    .setXPercent(45)
-                    .setYPercent(60)
+            DataItem item = DataItem.Builder.make("Nem công chả phượng", DataItem.Builder.MODE_HIGH)
+                    .setXPercent(80)
+                    .setYPercent(55)
                     .build();
             data.add(item);
         }
 
         {
-            DataItem item = DataItem.Builder.make("Inteligent company", DataItem.Builder.MODE_HIGH)
-                    .setXPercent(15)
+            DataItem item = DataItem.Builder.make("\"Xa mặt cách ...\"?", DataItem.Builder.MODE_LOW)
+                    .setXPercent(90)
+                    .setYPercent(70)
+                    .build();
+            data.add(item);
+        }
+
+        {
+            DataItem item = DataItem.Builder.make("\"Đất rộng trời ...\"?", DataItem.Builder.MODE_DEFAULT)
+                    .setXPercent(10)
                     .setYPercent(80)
                     .build();
             data.add(item);
         }
 
         {
-            DataItem item = DataItem.Builder.make("Inteligent company", DataItem.Builder.MODE_HIGH)
-                    .setXPercent(65)
+            DataItem item = DataItem.Builder.make("\"Ăn nên làm ...\"?", DataItem.Builder.MODE_LOW)
+                    .setXPercent(20)
                     .setYPercent(90)
                     .build();
             data.add(item);

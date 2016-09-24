@@ -70,22 +70,22 @@ public class DataItem {
             Builder builder = new Builder(text);
             switch (mode){
                 case MODE_LOW:
-                    builder.setColor(Color.DKGRAY)
+                    builder.setColor(Color.WHITE)
                             .setAlpha(0.25f)
-                            .setSize(20)
-                            .setVelocity(random(0.15f,0.3f));
-                    break;
-                case MODE_HIGH:
-                    builder.setColor(Color.BLACK)
-                            .setAlpha(1f)
-                            .setSize(50)
-                            .setVelocity(random(1.4f,1.6f));
+                            .setSize(25)
+                            .setVelocity(random(0.2f,0.25f));
                     break;
                 case MODE_DEFAULT:
-                    builder.setColor(Color.GRAY)
+                    builder.setColor(Color.WHITE)
+                            .setAlpha(0.65f)
+                            .setSize(45)
+                            .setVelocity(random(0.2f,0.3f));
+                    break;
+                case MODE_HIGH:
+                    builder.setColor(Color.WHITE)
                             .setAlpha(0.8f)
-                            .setSize(35)
-                            .setVelocity(random(0.1f,0.5f));
+                            .setSize(55)
+                            .setVelocity(random(0.3f,0.4f));
                     break;
             }
             return builder;
@@ -93,8 +93,8 @@ public class DataItem {
 
         public static float random(float min, float max){
             Random ran = new Random();
-            float x = ran.nextInt((int)(max*100 - min*100)) + min;
-            return x/100;
+            float x = ran.nextInt((int)(max*1000 - min*1000)) + min;
+            return x/1000;
         }
     }
 }
