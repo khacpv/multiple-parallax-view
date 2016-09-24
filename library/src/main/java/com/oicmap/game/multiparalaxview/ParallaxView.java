@@ -112,6 +112,7 @@ public class ParallaxView extends FrameLayout implements SensorEventListener {
 
         for (DataItem item : mStringList) {
             paintText.setTextSize(item.size);
+            paintText.setFakeBoldText(true);
             paintText.setColor(item.color);
             paintText.getTextBounds(item.text, 0, item.text.length(), bound);
             float alpha;
