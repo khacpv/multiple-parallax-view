@@ -18,6 +18,8 @@ public class DataItem {
 
     public float velocity = 0;
 
+    public boolean bold = true;
+
     public static final class Builder {
 
         public static final int MODE_DEFAULT = 0;
@@ -59,6 +61,11 @@ public class DataItem {
 
         public Builder setVelocity(float velocity) {
             item.velocity = velocity;
+            return this;
+        }
+
+        public Builder setBold(boolean bold){
+            item.bold = bold;
             return this;
         }
 
