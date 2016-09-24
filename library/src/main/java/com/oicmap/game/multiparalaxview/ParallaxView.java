@@ -5,6 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,7 +19,7 @@ import java.util.List;
 /**
  * Created by FRAMGIA\pham.van.khac on 9/23/16.
  */
-public class ParallaxView extends FrameLayout {
+public class ParallaxView extends FrameLayout implements SensorEventListener {
 
     private List<DataItem> mStringList = new ArrayList<>();
 
@@ -43,6 +47,10 @@ public class ParallaxView extends FrameLayout {
         }
     };
 
+    SensorManager sensorMng;
+
+    Sensor gyroscope;
+
     public ParallaxView(Context context) {
         super(context);
         init(null);
@@ -68,6 +76,13 @@ public class ParallaxView extends FrameLayout {
         setWillNotDraw(false);
 
         debug = BuildConfig.DEBUG;
+
+        sensorMng = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
+        if(sensorMng.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null){
+            gyroscope = sensorMng.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        }
+
+        sensorMng.registerListener(this,gyroscope,SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     public void setData(List<DataItem> data) {
@@ -108,6 +123,7 @@ public class ParallaxView extends FrameLayout {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        sensorMng.unregisterListener(this);
         mHandler.removeCallbacks(update);
     }
 
@@ -116,6 +132,16 @@ public class ParallaxView extends FrameLayout {
         Log.e("TAG", "log:" + log);
         paintText.getTextBounds(log, 0, log.length(), bound);
         canvas.drawText(log, 0, bound.height(), paintText);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        Log.e("TAG",event.values[0]+"-"+event.values[1]+event.values[2]);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 }
 
