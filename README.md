@@ -1,6 +1,8 @@
 # multiple-parallax-view
 Parallax view
 
+![Screen shoot](https://github.com/khacpv/multiple-parallax-view/blob/master/images/screenshoot.png)
+
 [![](https://jitpack.io/v/khacpv/multiple-parallax-view.svg)](https://jitpack.io/#khacpv/multiple-parallax-view)
 
 ## How to install
