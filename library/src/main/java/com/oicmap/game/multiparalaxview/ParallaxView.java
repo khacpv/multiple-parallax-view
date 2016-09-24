@@ -82,10 +82,12 @@ public class ParallaxView extends FrameLayout implements SensorEventListener {
 
         debug = BuildConfig.DEBUG;
 
-        sensorMng = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
-        if (sensorMng.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null) {
-            gyroscope = sensorMng.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-            sensorMng.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_FASTEST);
+        if(!isInEditMode()) {
+            sensorMng = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
+            if (sensorMng.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null) {
+                gyroscope = sensorMng.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+                sensorMng.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_FASTEST);
+            }
         }
     }
 
