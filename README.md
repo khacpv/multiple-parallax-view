@@ -7,7 +7,7 @@ Parallax view
 
 ## How to install
 
-step 1:
+step 1: /build.gradle
 
 ````gradle
 allprojects {
@@ -18,7 +18,7 @@ allprojects {
 }
 ````
 
-step 2:
+step 2: /app/build.gradle
 
 ````gradle
 dependencies {
