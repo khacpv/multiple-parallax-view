@@ -9,7 +9,7 @@ Parallax view
 
 step 1:
 
-````
+````gradle
 allprojects {
   repositories {
     ...
@@ -20,12 +20,26 @@ allprojects {
 
 step 2:
 
-````
+````gradle
 dependencies {
   compile 'com.github.khacpv:multiple-parallax-view:-SNAPSHOT'
 }
 ````
 
 ## How to use
+
+````java
+List<DataItem> data = new ArrayList<>();
+mParallaxView = (ParallaxView) findViewById(R.id.parallax);
+
+DataItem item = DataItem.Builder.make("Nhất cử lưỡng tiện", DataItem.Builder.MODE_DEFAULT)
+    .setXPercent(0)
+    .setYPercent(0)
+    .build();
+data.add(item);
+
+mParallaxView.setData(data);
+
+````
 
 see [MainActivity.java](https://github.com/khacpv/multiple-parallax-view/blob/master/app/src/main/java/com/oicmap/game/multipleparalaxview/MainActivity.java)

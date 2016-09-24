@@ -6,12 +6,13 @@ import android.os.Bundle;
 import com.oicmap.game.multiparalaxview.DataItem;
 import com.oicmap.game.multiparalaxview.ParallaxView;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     ParallaxView mParallaxView;
 
-    ArrayList<DataItem> data = new ArrayList<>();
+    List<DataItem> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
