@@ -79,13 +79,13 @@ public class DataItem {
                 case MODE_LOW:
                     builder.setColor(Color.WHITE)
                             .setAlpha(0.25f)
-                            .setSize(25)
+                            .setSize(45)
                             .setVelocity(random(0.2f,0.25f));
                     break;
                 case MODE_DEFAULT:
                     builder.setColor(Color.WHITE)
                             .setAlpha(0.65f)
-                            .setSize(45)
+                            .setSize(50)
                             .setVelocity(random(0.2f,0.3f));
                     break;
                 case MODE_HIGH:
