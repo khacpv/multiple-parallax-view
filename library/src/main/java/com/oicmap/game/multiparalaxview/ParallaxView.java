@@ -11,8 +11,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.FrameLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,7 +85,7 @@ public class ParallaxView extends FrameLayout implements SensorEventListener {
         sensorMng = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
         if (sensorMng.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null) {
             gyroscope = sensorMng.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-            sensorMng.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_NORMAL);
+            sensorMng.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_FASTEST);
         }
     }
 
@@ -96,11 +96,15 @@ public class ParallaxView extends FrameLayout implements SensorEventListener {
         mHandler.post(update);
     }
 
+    public void setDebug(boolean debug) {
+        this.debug = debug;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (debug) {
+        if (debug || isInEditMode()) {
             drawDebug(canvas);
         }
 
@@ -118,8 +122,8 @@ public class ParallaxView extends FrameLayout implements SensorEventListener {
             }
             paintText.setAlpha((int) (alpha * 255 * item.alpha));
             canvas.drawText(item.text, //
-                    (item.xPercent+gyroX) * getWidth() / 100, //
-                    (item.yPercent+gyroZ) * getHeight() / 100 + bound.height(), //
+                    (item.xPercent) * getWidth() / 100, //
+                    (item.yPercent) * getHeight() / 100 + bound.height(), //
                     paintText);
         }
     }
@@ -133,14 +137,12 @@ public class ParallaxView extends FrameLayout implements SensorEventListener {
 
     private void drawDebug(Canvas canvas) {
         log = getWidth() + "-" + getHeight();
-        Log.e("TAG", "log:" + log);
         paintText.getTextBounds(log, 0, log.length(), bound);
         canvas.drawText(log, 0, bound.height(), paintText);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Log.e("TAG", event.values[0] + "-" + event.values[1] + event.values[2]);
         gyroX = event.values[0];
         gyroY = event.values[1];
         gyroZ = event.values[2];
